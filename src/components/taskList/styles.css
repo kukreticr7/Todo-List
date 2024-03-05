@@ -1,0 +1,113 @@
+.tasklist {
+  
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  border: 1px solid #ff8303;
+  border-radius: 4px;
+  background-color: #242320;
+  max-width: 1306px;
+  margin-top: 76px;
+  min-height: 426px;
+
+  @media (max-width: 599px) {
+     margin-top: 26px;
+    border: unset;
+     background-color: transparent;
+  }
+}
+
+.no-task {
+  display: flex;
+  align-items: center;
+  line-height: 29px;
+  font-size: 24px;
+  font-family: sans-serif;
+  color: #ffffff;
+  position: relative;
+}
+
+.no-task::before {
+  content: "";
+  border-bottom: 3px solid #ff8303;
+  width: 64px;
+  left: 14px;
+  display: block;
+  position: absolute;
+  border-radius: 25px;
+  bottom: 186px;
+}
+
+.no-task::after {
+  content: "";
+  border-bottom: 3px solid #ff8303;
+  width: 64px;
+  left: 14px;
+  display: block;
+  position: absolute;
+  border-radius: 25px;
+  top: 186px;
+}
+
+.card-grid {
+  padding: 90px;
+  width: 100%;
+  display: grid;
+  grid-auto-rows: min-content;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 3em;
+  @media (max-width: 600px) {
+    padding: 20px ;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  
+  }
+  @media (max-width: 500px) {
+    padding: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+   gap: 1em;
+  }
+  
+  
+}
+
+.card {
+  padding: 16px;
+  border: 2px solid #ff8303;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.card-title {
+  color: #f0e3ca;
+  font-size: 22px;
+  line-height: 25.78px;
+  font-weight: 500;
+}
+
+.card-body {
+  color: #f0e3ca;
+  font-size: 14px;
+  line-height: 16.41px;
+  font-weight: 400;
+}
+
+.card-button{
+  display: flex;
+  flex-direction: row;
+  gap:8px;
+}
+
+.infoButton {
+  padding: 12px 14px;
+  max-height: 36px;
+  max-width: 36px;
+}
+
+
+.editButton {
+  padding: 12px 10px;
+  max-height: 32px;
+  max-width: 32px;
+}

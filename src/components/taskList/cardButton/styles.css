@@ -1,0 +1,8 @@
+.cardButton {
+  display: flex;
+  align-items: center;
+  border: 2px solid #ff8303;
+  background-color: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+}

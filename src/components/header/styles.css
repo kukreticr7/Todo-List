@@ -1,0 +1,24 @@
+.todo-app__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 82px;
+  padding: 0 48px;
+  border: 2px solid #A35709;
+  border-radius: 0px 0px 8px 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.todo-app__title {
+  margin: 0;
+  font-size: 2rem;
+  color: #fff;
+}
+
+.todo-app__input {
+  border: none;
+  background-color: #fff;
+  padding: 8px 12px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
