@@ -48,7 +48,7 @@ const TaskInput: React.FC<Proptypes> = ({ type, value, setValue }: Proptypes) =>
           value={value}
           className="task-input"
           placeholder={placeholder}
-          onInput={(e) => handleInputChange(e)}
+          onInput={(e:ChangeEvent<HTMLInputElement>) => handleInputChange(e)}
           onFocus={handleFocus}
           onBlur={handleBlur}
         />

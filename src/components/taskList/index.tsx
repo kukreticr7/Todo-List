@@ -4,12 +4,10 @@ import Edit from "../../assets/images/edit";
 import Cross from "../../assets/images/cross";
 import CardButton from "./cardButton";
 import "./styles.css";
-import {
-  GlobalStateContext,
-} from "../../store/GlobalContextProvider";
+import { GlobalStateContext } from "../../store/GlobalContextProvider";
 
 interface Task {
-  id: string;
+  id: number;
   title: string;
   desc: string;
 }
@@ -29,7 +27,7 @@ const TaskList: React.FC<Proptypes> = ({
 }: Proptypes) => {
   const state = useContext(GlobalStateContext);
   const [editStates, setEditStates] = useState<boolean[]>(
-    state.tasks.map(() => false)
+    state?.tasks?.map(() => false) ?? []
   );
 
   const handleEditClick = (index: number) => {
@@ -57,7 +55,7 @@ const TaskList: React.FC<Proptypes> = ({
                       <CardButton
                         className="editButton"
                         onClick={() => {
-                          setId(item.id);
+                          setId(Number(item.id));
                           setTitle(item.title);
                           setDesc(item.desc);
                         }}
@@ -67,7 +65,7 @@ const TaskList: React.FC<Proptypes> = ({
                       <CardButton
                         className="editButton"
                         onClick={() => {
-                          setId(item.id);
+                          setId(Number(item.id));
                           togglePopup();
                         }}
                       >

@@ -1,4 +1,4 @@
-import { useState,useContext } from "react";
+import { useState, useContext } from "react";
 import "./App.css";
 import AddTask from "./components/AddTask";
 import Header from "./components/header";
@@ -11,18 +11,22 @@ function App() {
 
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
-  const [id, setId] = useState("");
+  const [id, setId] = useState(0);
   const [showPopup, setShowPopup] = useState(false);
 
   const togglePopup = () => {
     setShowPopup(!showPopup);
   };
 
-  const removeTask=()=>{
-    dispatch({ type: "REMOVE_TASK", payload: id });
-    setId("");
-    setShowPopup(!showPopup);
-  }
+  const removeTask = () => {
+    if (dispatch) {
+      dispatch({ type: "REMOVE_TASK", payload: id });
+      setId(0);
+      setShowPopup(!showPopup);
+    } else {
+      console.error("Dispatch is undefined. Check your context provider.");
+    }
+  };
 
   console.log(title, desc, "setTitle");
   return (
@@ -36,9 +40,20 @@ function App() {
         desc={desc}
         setDesc={setDesc}
       />
-      <TaskList togglePopup={togglePopup} setTitle={setTitle} setDesc={setDesc} setId={setId} />
+      <TaskList
+        togglePopup={togglePopup}
+        setTitle={setTitle}
+        setDesc={setDesc}
+        setId={setId}
+      />
 
-      {showPopup && <Popup onClick={removeTask} text="Delete this task?" closePopup={togglePopup} />}
+      {showPopup && (
+        <Popup
+          onClick={removeTask}
+          text="Delete this task?"
+          closePopup={togglePopup}
+        />
+      )}
     </>
   );
 }

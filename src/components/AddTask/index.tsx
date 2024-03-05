@@ -8,44 +8,58 @@ import {
 } from "../../store/GlobalContextProvider";
 
 interface Proptypes {
-  id: string;
+  id: number;
   title: string;
   setTitle: (val: string) => void;
   desc: string;
   setDesc: (val: string) => void;
-  setId: (val: string) => void;
+  setId: (val: number) => void;
 }
 
-const AddTask: React.FC<Proptypes> = ({ title, desc, setTitle, setDesc, id, setId }: Proptypes) => {
+const AddTask: React.FC<Proptypes> = ({
+  title,
+  desc,
+  setTitle,
+  setDesc,
+  id,
+  setId,
+}: Proptypes) => {
   const dispatch = useContext(GlobalDispatchContext);
   const state = useContext(GlobalStateContext);
 
   const handleClick = () => {
-    const taskToEdit = state.tasks.find((task) => task.id === id);
-
-    if (taskToEdit) {
-      dispatch({
-        type: "EDIT_TASK",
-        payload: {
-          id: id,
-          changes: {
-            title: title,
-            desc: desc,
-          },
-        },
-      });
-      setId("");
-    } else if (title !== "" && desc !== "") {
-      const newTask = {
-        id: Date.now(),
-        title: title,
-        desc: desc,
-      };
-
-      dispatch({ type: "ADD_TASK", payload: newTask });
+    let taskToEdit;
+    if (state) {
+      taskToEdit = state.tasks.find((task) => task.id === id);
     }
-    setTitle("");
-    setDesc("");
+
+    if (dispatch) {
+      if (taskToEdit) {
+        dispatch({
+          type: "EDIT_TASK",
+          payload: {
+            id: id,
+            changes: {
+              title: title,
+              desc: desc,
+            },
+          },
+        });
+        setId(0);
+      } else if (title !== "" && desc !== "") {
+        const newTask = {
+          id: Date.now(),
+          title: title,
+          desc: desc,
+        };
+
+        dispatch({ type: "ADD_TASK", payload: newTask });
+      }
+      setTitle("");
+      setDesc("");
+    } else {
+      console.error("Dispatch is undefined. Check your context provider.");
+    }
   };
 
   return (
